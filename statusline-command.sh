@@ -17,10 +17,16 @@ make_bar() {
   printf "%s" "$bar"
 }
 
-# 5-hour session limit usage
+# 5-hour session limit usage with reset time
+five_resets=$(echo "$input" | jq -r '.rate_limits.five_hour.resets_at // empty')
 if [ -n "$five" ]; then
   five_pct=$(printf "%.0f" "$five")
-  five_display="5h:$(make_bar "$five") ${five_pct}%"
+  if [ -n "$five_resets" ]; then
+    reset_time=$(date -d "@${five_resets}" +%H:%M 2>/dev/null || date -r "$five_resets" +%H:%M 2>/dev/null)
+    five_display="5h:$(make_bar "$five") ${five_pct}% (resets ${reset_time})"
+  else
+    five_display="5h:$(make_bar "$five") ${five_pct}%"
+  fi
 else
   five_display=""
 fi
