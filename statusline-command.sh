@@ -22,7 +22,7 @@ five_resets=$(echo "$input" | jq -r '.rate_limits.five_hour.resets_at // empty')
 if [ -n "$five" ]; then
   five_pct=$(printf "%.0f" "$five")
   if [ -n "$five_resets" ]; then
-    reset_time=$(date -d "@${five_resets}" +%H:%M 2>/dev/null || date -r "$five_resets" +%H:%M 2>/dev/null)
+    reset_time=$(TZ=Asia/Bangkok date -d "@${five_resets}" +%H:%M 2>/dev/null || TZ=Asia/Bangkok date -r "$five_resets" +%H:%M 2>/dev/null)
     five_display="5h:$(make_bar "$five") ${five_pct}% (resets ${reset_time})"
   else
     five_display="5h:$(make_bar "$five") ${five_pct}%"
