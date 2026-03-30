@@ -1,0 +1,25 @@
+# Sensitive
+.credentials.json
+settings.local.json
+
+# Claude internal data
+cache/
+debug/
+file-history/
+history.jsonl
+mcp-needs-auth-cache.json
+paste-cache/
+sessions/
+shell-snapshots/
+telemetry/
+
+# Runtime / project state
+backups/
+channels/
+plans/
+projects/
+tasks/
+
+# Memory (managed separately)
+memory/
+MEMORY.md
