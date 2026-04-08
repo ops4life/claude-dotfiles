@@ -25,8 +25,10 @@ Bars use `▓` for used capacity and `░` for remaining. Both segments are hidd
 
 ## Setup
 
+Clone or download this repo, then run the install script from the repo directory:
+
 ```bash
-git clone git@github.com:duyluann/claude-dotfiles.git ~/.claude-dotfiles
-cp ~/.claude-dotfiles/settings.json ~/.claude/settings.json
-cp ~/.claude-dotfiles/statusline-command.sh ~/.claude/statusline-command.sh
+bash install.sh
 ```
+
+This copies `settings.json` and `statusline-command.sh` into `~/.claude/`.
