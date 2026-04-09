@@ -6,6 +6,19 @@ DEST="$HOME/.claude"
 
 echo "Installing claude-dotfiles..."
 
+# Ensure jq is available (required by statusline-command.sh)
+if ! command -v jq >/dev/null 2>&1; then
+  echo "jq not found, installing..."
+  if command -v apt-get >/dev/null 2>&1; then
+    sudo apt-get install -y jq
+  elif command -v brew >/dev/null 2>&1; then
+    brew install jq
+  else
+    echo "ERROR: Cannot install jq automatically. Please install it manually and re-run." >&2
+    exit 1
+  fi
+fi
+
 # Ensure destination exists
 mkdir -p "$DEST"
 
